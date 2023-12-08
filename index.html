@@ -7,13 +7,13 @@
     </head>
     <body class="min-h-screen bg-[#090727] flex justify-center sm:items-center items-start mt-6 sm:mt-0 overflow-hidden">
 
-        <div class="max-w-xl w-full border sm:px-9 px-4 py-5 text-white">
+        <div class="max-w-xl w-full border sm:px-9 px-4 py-5 text-white rounded-lg m-2">
 
             <p class="text-3xl text-center">Password Generator</p>
             <input class="w-full bg-white text-black mt-8 px-2 py-1 text-lg rounded-md" placeholder="Click on generate button" type="text" name="" id="pass" disabled>
             <div class="btns mt-8 flex justify-center gap-5">
-                <button class="sm:px-5 px-2 py-1 bg-purple-500 text-lg font-semibold rounded" id="generate">Generate</button>
-                <button class="sm:px-5 px-2 py-1 bg-purple-500 text-lg font-semibold rounded" id="clipboard">Copy to clipboard</button>
+                <button class="sm:px-5 px-2 py-1 bg-purple-500 active:bg-purple-600 text-lg font-semibold rounded" id="generate">Generate</button>
+                <button class="sm:px-5 px-2 py-1 bg-purple-500 active:bg-purple-600 text-lg font-semibold rounded" id="clipboard">Copy to clipboard</button>
             </div>
             <div class="complexity mt-10 px-8">
                 <div class="flex justify-between mt-4 items-center">
@@ -52,30 +52,54 @@
             let number = document.getElementById("number")
             let symbol = document.getElementById("symbol")
 
+            function randomGenerator(num){
+                return Math.floor(Math.random()*num)
+            }
+
             function generatePassword(){
-                // let upr = "QWERTYUIOPASDFGHJKLZXCVBNM"
-                // let lwr = "qwertyuiopasdfghjklzxcvbnm"
-                // let num = "1234567890"
-                // let sym = "!@#$%^&*()-+={[]}?><;"
+                
                 let passString = ""
 
-                if(uppercase.checked){
-                    passString += "QWERTYUIOPASDFGHJKLZXCVBNM"
-                }
-                if(lowercase.checked){
-                    passString += "qwertyuiopasdfghjklzxcvbnm"
-                }
-                if(number.checked){
-                    passString += "1234567890"
-                }
-                if(symbol.checked){
-                    passString += "!@#$%^&*()-+={[]}?><;"
-                }
+                if(Number(length.value) < 6 || Number(length.value) > 25){
+                    alert("Invalid password length")
+                }else{
+                    if(uppercase.checked || lowercase.checked || number.checked || symbol.checked){
+                        if(uppercase.checked){
+                            passString += "QWERTYUIOPASDFGHJKLZXCVBNM"
+                        }
+                        if(lowercase.checked){
+                            passString += "qwertyuiopasdfghjklzxcvbnm"
+                        }
+                        if(number.checked){
+                            passString += "1234567890"
+                        }
+                        if(symbol.checked){
+                            passString += "!@#$%^&*()-+={[]}?><;"
+                        }
 
-                console.log(passString);
+                        let generatedPassword = ""
+
+                        for(let i = 0; i <= Number(length.value); i++){
+                            generatedPassword += passString[randomGenerator(passString.length)]
+                        }
+
+                        password.value = generatedPassword
+                    }else{
+                        alert("Please choose at least one option")
+                    }
+                }
+                
+
+                
             }
 
             generate.addEventListener("click", generatePassword)
+
+            clipboard.addEventListener("click", () => {
+                let clipboardPassword = password.value
+
+                navigator.clipboard.writeText(clipboardPassword)
+            })
         </script>
     </body>
 </html>
