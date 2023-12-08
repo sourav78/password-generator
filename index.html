@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="./dist/generator.css" rel="stylesheet">
+    </head>
+    <body class="min-h-screen bg-[#090727] flex justify-center sm:items-center items-start mt-6 sm:mt-0 overflow-hidden">
+
+        <div class="max-w-xl w-full border sm:px-9 px-4 py-5 text-white">
+
+            <p class="text-3xl text-center">Password Generator</p>
+            <input class="w-full bg-white text-black mt-8 px-2 py-1 text-lg rounded-md" placeholder="Click on generate button" type="text" name="" id="pass" disabled>
+            <div class="btns mt-8 flex justify-center gap-5">
+                <button class="sm:px-5 px-2 py-1 bg-purple-500 text-lg font-semibold rounded" id="generate">Generate</button>
+                <button class="sm:px-5 px-2 py-1 bg-purple-500 text-lg font-semibold rounded" id="clipboard">Copy to clipboard</button>
+            </div>
+            <div class="complexity mt-10 px-8">
+                <div class="flex justify-between mt-4 items-center">
+                    <label class="text-lg font-semibold" for="">Password length: </label>
+                    <input class="w-20 text-black outline-none border-none text-lg px-1" type="number" value="8" id="length">
+                </div>
+                <div class="flex justify-between mt-4">
+                    <label class="text-lg font-semibold" for="">Include Uppercase: </label>
+                    <input class="w-5" type="checkbox" checked name="" id="uppercase">
+                </div>
+                <div class="flex justify-between mt-4">
+                    <label class="text-lg font-semibold" for="">Include Lowercase: </label>
+                    <input class="w-5" type="checkbox" checked name="" id="lowercase">
+                </div>
+                <div class="flex justify-between mt-4">
+                    <label class="text-lg font-semibold" for="">Include Numbers: </label>
+                    <input class="w-5" type="checkbox" checked name="" id="number">
+                </div>
+                <div class="flex justify-between mt-4">
+                    <label class="text-lg font-semibold" for="">Include Symbols: </label>
+                    <input class="w-5" type="checkbox" checked name="" id="symbol">
+                </div>
+            </div>
+        </div>
+        
+        <script>
+
+            let password = document.getElementById("pass")
+
+            let generate = document.getElementById("generate")
+            let clipboard = document.getElementById("clipboard")
+
+            let length = document.getElementById("length")
+            let uppercase = document.getElementById("uppercase")
+            let lowercase = document.getElementById("lowercase")
+            let number = document.getElementById("number")
+            let symbol = document.getElementById("symbol")
+
+            function generatePassword(){
+                // let upr = "QWERTYUIOPASDFGHJKLZXCVBNM"
+                // let lwr = "qwertyuiopasdfghjklzxcvbnm"
+                // let num = "1234567890"
+                // let sym = "!@#$%^&*()-+={[]}?><;"
+                let passString = ""
+
+                if(uppercase.checked){
+                    passString += "QWERTYUIOPASDFGHJKLZXCVBNM"
+                }
+                if(lowercase.checked){
+                    passString += "qwertyuiopasdfghjklzxcvbnm"
+                }
+                if(number.checked){
+                    passString += "1234567890"
+                }
+                if(symbol.checked){
+                    passString += "!@#$%^&*()-+={[]}?><;"
+                }
+
+                console.log(passString);
+            }
+
+            generate.addEventListener("click", generatePassword)
+        </script>
+    </body>
+</html>
