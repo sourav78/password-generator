@@ -534,6 +534,10 @@ video {
   --tw-backdrop-sepia:  ;
 }
 
+.m-2 {
+  margin: 0.5rem;
+}
+
 .mt-4 {
   margin-top: 1rem;
 }
@@ -616,6 +620,10 @@ video {
 
 .rounded {
   border-radius: 0.25rem;
+}
+
+.rounded-lg {
+  border-radius: 0.5rem;
 }
 
 .border {
@@ -783,6 +791,11 @@ video {
 .outline-none {
   outline: 2px solid transparent;
   outline-offset: 2px;
+}
+
+.active\:bg-purple-600:active {
+  --tw-bg-opacity: 1;
+  background-color: rgb(147 51 234 / var(--tw-bg-opacity));
 }
 
 @media (min-width: 640px) {
